@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    
+    html, body {
+      height: 100%;
+    }
+    
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background-image: url("/pexels-mateusz-dach-4503100.jpg");
+      background-size: cover;
+      background-position: center;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+    }
+
+    .game-title {
+      font-size: 50px;
+      margin-bottom: 20px;
+    }
+
+    .menu-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px; /* Espaçamento entre os itens do menu */
+    }
+
+    .menu-option {
+      margin-bottom: 10px;
+    }
+
+    .menu-option a {
+      text-decoration: none;
+      color: #000;
+      font-size: 50px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background-color 0.6s;
+    }
+
+    .menu-option a:hover {
+      background-color: #ccc;
+    }
+
+    .game-over-message {
+      display: none;
+      color: red;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .restart-button {
+      display: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 18px;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  var gameContainer = document.getElementById('game-container');
+  var gameOverMessage = document.getElementById('game-over-message');
+  var restartButton = document.getElementById('restart-button');
+  
+  var gameStarted = false;
+  var gameFinished = false;
+
+  // Verifica se o estado do jogo foi armazenado
+  if (localStorage.getItem('gameFinished') === 'true') {
+    // Se o jogo tiver terminado antes, exibe a mensagem e o botão
+    gameFinished = true;
+    gameOverMessage.style.display = 'block';
+    restartButton.style.display = 'block';
+  }
+  
+  // Função para iniciar o jogo
+  function startGame() {
+    gameStarted = true;
+    
+    // Aqui você pode adicionar código para iniciar o jogo
+  }
+  
+  // Função para finalizar o jogo
+  function endGame() {
+    gameFinished = true;
+    gameOverMessage.style.display = 'block';
+    restartButton.style.display = 'block';
+    
+    // Armazena o estado do jogo
+    localStorage.setItem('gameFinished', 'true');
+  }
+  
+  // Função para reiniciar o jogo
+  function restartGame() {
+    gameFinished = false;
+    gameOverMessage.style.display = 'none';
+    restartButton.style.display = 'none';
+    
+    // Remove o estado do jogo armazenado
+    localStorage.removeItem('gameFinished');
+    
+    // Aqui você pode adicionar código para reiniciar o jogo
+  }
+  
+  gameContainer.addEventListener('mousemove', function(event) {
+    if (!gameStarted || gameFinished) {
+      return;
+    }
+    
+    // Aqui você pode adicionar código para controlar a paleta do jogo
+  });
+  
+  gameContainer.addEventListener('mouseout', function(event) {
+    if (!gameStarted || gameFinished) {
+      return;
+    }
+    
+    // Aqui você pode adicionar código para verificar se a bola passou da paleta e chamar a função endGame()
+  });
+  
+  restartButton.addEventListener('click', restartGame);
+});
+
+  </script>
+</head>
+<body>
+  <h1 class="game-title">Smash and Dash</h1>
+  
+  <div id="game-container">
+    <div class="game-over-message" id="game-over-message">Game Over</div>
+    <button class="restart-button" id="restart-button">Restart</button>
+  </div>
+
+  <div class="menu-options">
+    <div class="menu-option">
+      <a id="iniciar-button" href="/game.html">Iniciar</a>
+    </div>
+    <div class="menu-option"><a href="config.html">Configurações</a></div>
+    <div class="menu-option"><a href="ranking.html">Ranking</a></div>
+  </div>
+
+</body>
+</html>
